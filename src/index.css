@@ -10,6 +10,22 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* background: url("./assets/background.png"); */
+  /* background: rgb(126, 70, 238);
+  background: linear-gradient(
+    60deg,
+    rgba(126, 70, 238, 1) 0%,
+    rgba(238, 20, 134, 0.908000700280112) 35%,
+    rgba(236, 6, 206, 0.8323704481792717) 77%,
+    rgba(235, 0, 238, 0.8239670868347339) 100%
+  ); */
+
+  background: rgb(196, 154, 191);
+  background: linear-gradient(
+    90deg,
+    rgba(196, 154, 191, 1) 0%,
+    rgba(194, 167, 68, 1) 100%
+  );
 }
 
 code {
