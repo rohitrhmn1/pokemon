@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Footer from "./Footer";
 
 import Header from "./Header";
 import PokemonContainer from "./PokemonContainer";
@@ -36,6 +37,7 @@ function App() {
             render={(props) => <PokemonDetails {...props} classes={classes} />}
           />
         </Switch>
+        <Footer classes={classes}/>
       </Router>
     </div>
   );

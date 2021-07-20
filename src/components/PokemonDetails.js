@@ -31,6 +31,9 @@ function PokemonDetails({ match, classes }) {
       const { data } = await axios.get(`pokemon/${index}/`);
 
       setPokemonData(data);
+      document.title = `Details for ${
+        data.name[0].toUpperCase() + data.name.substring(1)
+      }`;
     };
 
     const getSpeciesData = async () => {

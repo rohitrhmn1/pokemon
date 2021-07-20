@@ -26,6 +26,11 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "100%",
   },
   cardContent: {},
+
+  footer: {
+    backgroundColor: "#32ac41",
+    padding: theme.spacing(6),
+  },
 }));
 
 export default useStyles;
