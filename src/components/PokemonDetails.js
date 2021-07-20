@@ -9,6 +9,7 @@ import {
   Typography,
   CardHeader,
   CardMedia,
+  Container,
   Grid,
   LinearProgress,
 } from "@material-ui/core";
@@ -61,85 +62,88 @@ function PokemonDetails({ match, classes }) {
       }}
     />
   ) : (
-    <Card
-      style={{
-        background: "rgba(255,255,255,0.6)",
-        borderRadius: "20px",
-      }}
-    >
-      <CardHeader
-        title={pokemonData?.name}
-        subheader={`EXP: ${pokemonData?.base_experience}`}
+    <Container className={classes.cardGrid} maxWidth="lg">
+      <Card
         style={{
-          textTransform: "capitalize",
-          background: "rgba(236, 240, 241 ,0.6)",
+          background: "rgba(255,255,255,0.6)",
+          borderRadius: "20px",
         }}
-        action={
-          <>
-            {pokemonData.types.map((type, index) => (
-              <PokemonTypes key={index} type={type.type.name} />
-            ))}
-          </>
-        }
-      />
-      <Grid container spacing={2}>
-        <Grid item>
-          <CardMedia
-            title="Image"
-            component="img"
-            image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${index}.png`}
-            style={{
-              width: "150px",
-              margin: "auto",
-              padding: "15px",
-              display: "block",
-              maxWidth: "100%",
-              maxHeight: "100%",
-            }}
-          />
-        </Grid>
-        <Grid item xs={12} sm alignContent="center">
-          <CardContent>
-            <Typography variant="h6">
-              Abilities:
-              {pokemonData.abilities.map(
-                (ability, index) => `${index + 1}: ${ability.ability.name} `
-              )}
-            </Typography>
-
-            <Typography variant="h6">Height: {pokemonData.height}</Typography>
-            <Typography variant="h6">Weight: {pokemonData.weight}</Typography>
-            <Typography variant="h4">Stats</Typography>
-
-            {pokemonData.stats.map((stat, index) => (
-              <Typography variant="h6" key={index}>
-                {`${stat.stat.name}: ${stat.base_stat}. Effort: ${
-                  stat.effort ? "true" : "false"
-                }`}
-                <LinearProgress
-                  variant="determinate"
-                  value={normalize(stat.base_stat)}
-                  style={{
-                    // borderRadius: 16,
-                    // backgroundColor: "#1a90ff",
-                    borderRadius: 5,
-                    height: 10,
-                  }}
-                />
+      >
+        <CardHeader
+          title={pokemonData?.name}
+          subheader={`EXP: ${pokemonData?.base_experience}`}
+          style={{
+            textTransform: "capitalize",
+            background: "rgba(236, 240, 241 ,0.6)",
+          }}
+          action={
+            <>
+              {pokemonData.types.map((type, index) => (
+                <PokemonTypes key={index} type={type.type.name} />
+              ))}
+            </>
+          }
+        />
+        <Grid container spacing={2}>
+          <Grid item>
+            <CardMedia
+              title="Image"
+              component="img"
+              image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${index}.png`}
+              style={{
+                width: "150px",
+                margin: "auto",
+                padding: "15px",
+                display: "block",
+                maxWidth: "100%",
+                maxHeight: "100%",
+              }}
+            />
+          </Grid>
+          <Grid item xs={12} sm>
+            <CardContent>
+              <Typography variant="h6">
+                Abilities:
+                {pokemonData.abilities.map(
+                  (ability, index) => `${index + 1}: ${ability.ability.name} `
+                )}
               </Typography>
-            ))}
 
-            <Typography variant="h4">Species Information</Typography>
-            <Typography variant="h6">
-              Happiness: {speciesData.base_happiness}
-            </Typography>
-            <Typography variant="h6">
-              Capture Rate: {speciesData.capture_rate}
-            </Typography>
-          </CardContent>
+              <Typography variant="h6">Height: {pokemonData.height}</Typography>
+              <Typography variant="h6">Weight: {pokemonData.weight}</Typography>
+              <Typography variant="h4">Stats</Typography>
+
+              {pokemonData.stats.map((stat, index) => (
+                <Typography variant="h6" key={index}>
+                  {`${stat.stat.name}: ${stat.base_stat}. Effort: ${
+                    stat.effort ? "true" : "false"
+                  }`}
+                  <LinearProgress
+                    variant="determinate"
+                    value={normalize(stat.base_stat)}
+                    style={{
+                      // borderRadius: 16,
+                      // backgroundColor: "#1a90ff",
+                      borderRadius: 5,
+                      height: 10,
+                    }}
+                  />
+                </Typography>
+              ))}
+
+              <Typography variant="h4">Species Information</Typography>
+              <Typography variant="h6">
+                Happiness: {speciesData.base_happiness}
+              </Typography>
+              <Typography variant="h6">
+                Capture Rate: {speciesData.capture_rate}
+              </Typography>
+              <Typography variant="h6">{description.x}</Typography>
+            </CardContent>
+          </Grid>
         </Grid>
-      </Grid>
-    </Card>
+      </Card>
+    </Container>
   );
 }
 
