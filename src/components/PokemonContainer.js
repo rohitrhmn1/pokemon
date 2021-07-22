@@ -17,6 +17,7 @@ import SearchBar from "./SearchBar";
 function PokemonContainer({ history, classes }) {
   const [pokemons, setPokemons] = useState([]);
   const [limit, setLimit] = useState(25);
+  const [error, setError] = useState(false);
 
   let query = history.location.search;
 
@@ -32,19 +33,23 @@ function PokemonContainer({ history, classes }) {
       let broken = query.split("&");
       let searchQuery = broken[0].split("=")[1];
 
-      console.log(searchQuery);
-
-      const response = await axios.get(`pokemon/${searchQuery}`);
-      let pokemon = [response.data];
-      console.log(pokemon);
-      setPokemons(pokemon);
+      try {
+        const response = await axios.get(
+          `pokemon/${searchQuery.toLowerCase()}`
+        );
+        let pokemon = [response.data];
+        setPokemons(pokemon);
+        error && setError(false);
+      } catch (error) {
+        setError(true);
+      }
     };
     if (query) {
       processSearch(query);
     } else {
       getPokemon();
     }
-  }, [limit, query]);
+  }, [limit, query, error]);
 
   return (
     <Container className={classes.cardGrid} maxWidth="lg">
@@ -85,7 +90,7 @@ function PokemonContainer({ history, classes }) {
         </div>
       </div>
       <Grid container spacing={4}>
-        {!pokemons?.length ? (
+        {!pokemons?.length || error ? (
           <Container style={{ height: "100vh" }} align="center">
             <Card>
               <CardContent>
@@ -101,7 +106,7 @@ function PokemonContainer({ history, classes }) {
           ))
         )}
       </Grid>
-      <div className={classes.containerFadeBottom}/>
+      <div className={classes.containerFadeBottom} />
     </Container>
   );
 }
