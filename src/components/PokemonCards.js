@@ -10,7 +10,7 @@ function PokemonCards({ classes, pokemon }) {
   const [index, setIndex] = useState(null);
 
   useEffect(() => {
-    setIndex(pokemon.url.split("/")[6]);
+    setIndex(pokemon.url?pokemon.url.split("/")[6]:pokemon.species.url.split("/")[6]);
   }, [pokemon]);
 
   return (

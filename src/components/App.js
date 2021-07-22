@@ -10,21 +10,10 @@ import styles from "./styles";
 function App() {
   const classes = styles();
   return (
-    <div style={{ margin: "0 auto" }}>
-      <Router>
+    <Router>
+      <div id="content-wrap" style={{paddingBottom:"6rem"}}>
         <Header />
-
         <Switch>
-          {/* <Route path="/" exact component={PokemonContainer} />
-            <Route path="/details/:index/" component={PokemonDetails} /> */}
-
-          {/* <Route path="/" exact>
-              <PokemonContainer classes={classes} />
-            </Route>
-            <Route path="/details/:index/">
-              <PokemonDetails classes={classes} />
-            </Route> */}
-
           <Route
             path="/"
             exact
@@ -37,9 +26,9 @@ function App() {
             render={(props) => <PokemonDetails {...props} classes={classes} />}
           />
         </Switch>
-        <Footer classes={classes}/>
-      </Router>
-    </div>
+      </div>
+      <Footer classes={classes} />
+    </Router>
   );
 }
 

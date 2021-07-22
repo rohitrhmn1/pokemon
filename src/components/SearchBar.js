@@ -1,42 +1,33 @@
-import React from "react";
-import { Paper, InputBase, makeStyles } from "@material-ui/core";
+import React, { useState } from "react";
+
+import { useHistory } from "react-router-dom";
+import { Paper, InputBase } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    padding: "2px 4px",
-    display: "flex",
-    alignItems: "center",
-    width: "100%",
-  },
-  input: {
-    marginLeft: theme.spacing(1),
-    flex: 1,
-  },
-  iconButton: {
-    padding: 10,
-  },
-  divider: {
-    height: 28,
-    margin: 4,
-  },
-}));
+function SearchBar({ classes }) {
+  const [query, setQuery] = useState("");
 
-function SearchBar() {
-  const classes = useStyles();
+  let history = useHistory();
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    if (query) {
+      history.push(`/?query=${query}`);
+    } else {
+      history.push(history.push(history.location.pathname));
+    }
+  };
+
   return (
-    <Paper
-      component="form"
-      className={classes.root}
-      onSubmit={(e) => e.preventDefault()}
-    >
+    <Paper component="form" className={classes.root} onSubmit={submitHandler}>
       <InputBase
         className={classes.input}
         placeholder="Search your pokemon"
         fullWidth
         inputProps={{ "aria-label": "search pokemon" }}
-        name="q"
+        name="query"
+        onChange={(e) => setQuery(e.target.value)}
       />
       <IconButton
         type="submit"

@@ -1,9 +1,31 @@
 import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    padding: "2px 4px",
+    display: "flex",
+    alignItems: "center",
+    width: "100%",
+  },
+
+  input: {
+    marginLeft: theme.spacing(1),
+    flex: 1,
+  },
+
+  iconButton: {
+    padding: 10,
+  },
+
+  divider: {
+    height: 28,
+    margin: 4,
+  },
+
   cardGrid: {
     padding: "20px 20px",
   },
+
   card: {
     display: "flex",
     flexDirection: "column",
@@ -28,9 +50,16 @@ const useStyles = makeStyles((theme) => ({
   cardContent: {},
 
   footer: {
-    backgroundColor: "#32ac41",
-    padding: theme.spacing(6),
+    background:
+      "linear-gradient(90deg, rgba(93,73,212,1) 0%, rgba(32,1,29,1) 100%)",
+    position: "absolute",
+    bottom: "0",
+    width: "100%",
+    margin: "auto",
+    height: "6rem",
   },
+  containerFadeBottom: {},
+  footerFadeTop: {},
 }));
 
 export default useStyles;

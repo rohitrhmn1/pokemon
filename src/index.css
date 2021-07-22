@@ -19,6 +19,8 @@ body {
     rgba(236, 6, 206, 0.8323704481792717) 77%,
     rgba(235, 0, 238, 0.8239670868347339) 100%
   ); */
+  position: relative;
+  min-height: 100vh;
 
   background: rgb(196, 154, 191);
   background: linear-gradient(
